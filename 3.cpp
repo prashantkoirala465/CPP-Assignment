@@ -1,19 +1,25 @@
+// Write a C++ program to make such a pattern like a right angle triangle with the number increased by 1.
+// Sample Output:
+// Input number of rows: 4
+// 1
+// 2 3
+// 4 5 6
+// 7 8 9 10
+
 #include <iostream>
 using namespace std;
 
 int main(){
-    int number, firstDigit, lastDigit, temp, digits = 0;
-    cout << "Enter any number: ";
-    cin >> number;
-    temp = number;
-    while(temp != 0){
-        temp /= 10;
-        digits++;
+    int n;
+    cout << "Input number of rows: ";
+    cin >> n;
+    int counter = 1;
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= i; j++){
+            cout << counter << " ";
+            counter++;
+        }
+        cout << endl;
     }
-    firstDigit = number / (int)pow(10, digits - 1);
-    lastDigit = number % 10;
-    number = number - firstDigit * (int)pow(10, digits - 1) - lastDigit;
-    number = number + lastDigit * (int)pow(10, digits - 1) + firstDigit;
-    cout << "The number after swapping the first and last digits are: " << number << endl;
     return 0;
 }

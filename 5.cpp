@@ -1,24 +1,28 @@
+// Write a C++ program to make such a pattern, like a pyramid, with a repeating number.
+// Sample Output:
+// Input number of rows: 5
+//             1
+//            2 2
+//           3 3 3
+//          4 4 4 4
+//         5 5 5 5 5
+
 #include <iostream>
-#include <vector>
-#include <algorithm>
 using namespace std;
 
-int main(){
-    vector<int> numbers;
-    int n;
-    cout << "Enter the number of elements: ";
-    cin >> n;
-    cout << "Enter the elements: ";
-    for(int i = 0; i < n; i++){
-        int temp;
-        cin >> temp;
-        numbers.push_back(temp);
+int main() {
+    int rows;
+    cout << "Input number of rows: ";
+    cin >> rows;
+
+    for (int i = 1; i <= rows; i++) {
+        for (int j = 1; j <= rows - i; j++) {
+            cout << " ";
+        }
+        for (int k = 1; k <= (2 * i - 1); k++) {
+            cout << i;
+        }
+        cout << endl;
     }
-    sort(numbers.begin(), numbers.end(), greater<int>());
-    cout << "The three highest numbers are: ";
-    for(int i = 0; i < 3; i++){
-        cout << numbers[i] << " ";
-    }
-    cout << endl;
     return 0;
 }
