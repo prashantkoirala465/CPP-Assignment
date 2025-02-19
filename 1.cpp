@@ -1,47 +1,15 @@
-// Write a C++ program to find the largest three elements in an array.
-
+// Write a C++ program to find the sum of all elements in an array using recursion.
 #include <iostream>
-#include <climits>
 using namespace std;
 
-void findLargestThree(int arr[], int size) {
-    if (size < 3) {
-        cout << "Array should have at least 3 elements." << endl;
-        return;
-    }
-    int first = INT_MIN, second = INT_MIN, third = INT_MIN;
-
-    for (int i = 0; i < size; i++) {
-        if (arr[i] > first) {
-            third = second;
-            second = first;
-            first = arr[i];
-        } else if (arr[i] > second) {
-            third = second;
-            second = arr[i];
-        } else if (arr[i] > third) {
-            third = arr[i];
-        }
-    }
-
-    cout << "The largest three elements are: ";
-    cout << first << " " << second << " " << third << endl;
+int sumArray(int arr[], int n) {
+    if (n <= 0) return 0;
+    return arr[n-1] + sumArray(arr, n-1);
 }
 
 int main() {
-    int size;
-
-    cout << "Enter the size of the array: ";
-    cin >> size;
-
-    int arr[size];
-
-    cout << "Enter the elements of the array: ";
-    for (int i = 0; i < size; i++) {
-        cin >> arr[i];
-    }
-
-    findLargestThree(arr, size);
-
+    int arr[] = {1, 2, 3, 4, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << "Sum of array elements: " << sumArray(arr, n) << endl;
     return 0;
 }

@@ -1,48 +1,16 @@
-// Write a C++ program to find the k largest elements in a given array of integers.
-
+// Write a C++ program to implement a recursive function to get the nth Fibonacci number.
 #include <iostream>
-#include <queue>
-#include <vector>
 using namespace std;
 
-void findKLargestElements(int arr[], int n, int k) {
-    if (k > n) {
-        cout << "k cannot be greater than the size of the array." << endl;
-        return;
-    }
-
-    // Min-heap to store the k largest elements
-    priority_queue<int, vector<int>, greater<int>> minHeap;
-
-    // Add elements to the min-heap
-    for (int i = 0; i < n; i++) {
-        // If heap has less than k elements, add the current element
-        if (minHeap.size() < k) {
-            minHeap.push(arr[i]);
-        } else {
-            // If heap has k elements, replace the smallest one if current element is larger
-            if (arr[i] > minHeap.top()) {
-                minHeap.pop();
-                minHeap.push(arr[i]);
-            }
-        }
-    }
-
-    // Print the k largest elements
-    cout << "The " << k << " largest elements are: ";
-    while (!minHeap.empty()) {
-        cout << minHeap.top() << " ";
-        minHeap.pop();
-    }
-    cout << endl;
+long long fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
 int main() {
-    int arr[] = {12, 35, 1, 10, 34, 1, 50};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int k = 3;  // Number of largest elements to find
-
-    findKLargestElements(arr, n, k);
-
+    int n;
+    cout << "Enter n: ";
+    cin >> n;
+    cout << n << "th Fibonacci number is " << fibonacci(n) << endl;
     return 0;
 }

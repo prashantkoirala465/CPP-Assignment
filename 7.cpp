@@ -1,32 +1,26 @@
-// Write a C++ program to find the first repeating element in an array of integers.
-
+// Write a C++ program to implement a recursive function to find the sum of all prime numbers in a given range.
 #include <iostream>
-#include <unordered_set>
 using namespace std;
 
-int findFirstRepeatingElement(int arr[], int n)
-{
-    unordered_set<int> set;
-    int min = -1;
-
-    for (int i = n - 1; i >= 0; i--)
-    {
-        if (set.find(arr[i]) != set.end())
-            min = i;
-        else
-            set.insert(arr[i]);
-    }
-
-    if (min != -1)
-        return arr[min];
-    else
-        return -1;
+bool isPrime(int num, int i = 2) {
+    if (num < 2) return false;
+    if (i * i > num) return true;
+    if (num % i == 0) return false;
+    return isPrime(num, i + 1);
 }
 
-int main()
-{
-    int arr[] = {10, 5, 3, 4, 3, 5, 6};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    cout << "The first repeating element is " << findFirstRepeatingElement(arr, n);
+int sumPrimes(int start, int end) {
+    if (start > end) return 0;
+    return (isPrime(start) ? start : 0) + sumPrimes(start + 1, end);
+}
+
+int main() {
+    int s, e;
+    cout << "Enter start of range: ";
+    cin >> s;
+    cout << "Enter end of range: ";
+    cin >> e;
+
+    cout << "Sum of prime numbers in the range: " << sumPrimes(s, e) << endl;
     return 0;
 }
