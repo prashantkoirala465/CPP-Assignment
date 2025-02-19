@@ -1,16 +1,25 @@
+// Write a C++ program to capitalize the first letter of each word in a given string.
+// Words must be separated by only one space.
+// Example:
+// Sample Input: cpp string exercises
+// Sample Output: Cpp String Exercises
+
 #include <iostream>
+#include <string>
 using namespace std;
 
-int main(){
-    int a, b;
-    cout << "Enter first number: ";
-    cin >> a;
-    cout << "Enter second number: ";
-    cin >> b;
-    a = a + b;
-    b = a - b;
-    a = a - b;
-    cout << "After swapping the 1st number is: " << a << endl;
-    cout << "After swapping the 2nd number is: " << b << endl;
+int main() {
+    string str;
+    cout << "Enter a string: ";
+    getline(cin, str);
+    cout << "Capitalized string: ";
+    for (int i = 0; i < str.length(); i++) {
+        if (i == 0 || str[i - 1] == ' ') {
+            cout << (char)toupper(str[i]);
+        } else {
+            cout << str[i];
+        }
+    }
+    cout << endl;
     return 0;
 }

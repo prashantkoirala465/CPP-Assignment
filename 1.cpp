@@ -1,12 +1,20 @@
+// Write a C++ program to reverse a given string.
+// Example:
+// Sample Input: helloworld
+// Sample Output: dlrowolleh
+
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main() {
-    string firstName, lastName;
-    cout << "Enter your first name and last name : ";
-    cin >> firstName >> lastName;
-    cout << "First Name : " << firstName << endl;
-    cout << "Last Name : " << lastName << endl;
-    cout << "Name in reverse is: " << lastName << " " << firstName << endl;
+    string str;
+    cout << "Enter a string: ";
+    cin >> str;
+    cout << "Reversed string: ";
+    for (int i = str.length() - 1; i >= 0; i--) {
+        cout << str[i];
+    }
+    cout << endl;
     return 0;
 }

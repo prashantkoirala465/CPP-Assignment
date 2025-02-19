@@ -1,19 +1,31 @@
+// Write a C++ program to find the largest word in a given string.
+// Example:
+// Sample Input: C++ is a general-purpose programming language.
+// Sample Output: programming
+
 #include <iostream>
+#include <string>
 using namespace std;
 
-int main(){
-    int number, firstDigit, lastDigit, temp, digits = 0;
-    cout << "Enter any number: ";
-    cin >> number;
-    temp = number;
-    while(temp != 0){
-        temp /= 10;
-        digits++;
+int main() {
+    string str;
+    cout << "Enter a string: ";
+    getline(cin, str);
+    string largestWord = "";
+    string currentWord = "";
+    for (int i = 0; i < str.length(); i++) {
+        if (str[i] == ' ') {
+            if (currentWord.length() > largestWord.length()) {
+                largestWord = currentWord;
+            }
+            currentWord = "";
+        } else {
+            currentWord += str[i];
+        }
     }
-    firstDigit = number / (int)pow(10, digits - 1);
-    lastDigit = number % 10;
-    number = number - firstDigit * (int)pow(10, digits - 1) - lastDigit;
-    number = number + lastDigit * (int)pow(10, digits - 1) + firstDigit;
-    cout << "The number after swapping the first and last digits are: " << number << endl;
+    if (currentWord.length() > largestWord.length()) {
+        largestWord = currentWord;
+    }
+    cout << "Largest word: " << largestWord << endl;
     return 0;
 }
