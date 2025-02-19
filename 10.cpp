@@ -1,34 +1,24 @@
-// Write a program in C++ to display the pyramid pattern using the alphabet.
-// Sample Output:
-// Input the number of Letters (less than 26) in the Pyramid: 5
-// A
-// A B A
-// A B C B A
-// A B C D C B A
-// A B C D E D C B A
+// Write a C++ program to count the number of occurrences of a given number in a sorted array of integers.
 
 #include <iostream>
 using namespace std;
 
-int main() {
-    int n;
-    cout << "Input the number of Letters (less than 26) in the Pyramid: ";
-    cin >> n;
-    if (n > 26) {
-        cout << "Please enter a number less than or equal to 26." << endl;
-        return 1;
+int countOccurrences(int arr[], int n, int x)
+{
+    int count = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] == x)
+            count++;
     }
-    for (int i = 1; i <= n; i++) {
-        for (int j = i; j < n; j++) {
-            cout << " ";
-        }
-        for (int j = 0; j < i; j++) {
-            cout << char('A' + j) << " ";
-        }
-        for (int j = i - 2; j >= 0; j--) {
-            cout << char('A' + j) << " ";
-        }
-        cout << endl;
-    }
+    return count;
+}
+
+int main()
+{
+    int arr[] = {2, 3, 3, 3, 3, 4, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int x = 3;
+    cout << "The number of occurrences of " << x << " is " << countOccurrences(arr, n, x);
     return 0;
 }

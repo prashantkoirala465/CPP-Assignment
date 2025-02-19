@@ -1,27 +1,25 @@
-// Write a C++ program to print Floyd's Triangle.
-// Sample Output:
-// Input number of rows: 5
-// 1
-// 01
-// 101
-// 0101
-// 10101
+// Write a C++ program to find the two repeating elements in a given array of integers.
 
 #include <iostream>
 using namespace std;
 
-int main() {
-    int rows, num = 1;
-    cout << "Input number of rows: ";
-    cin >> rows;
-
-    for (int i = 1; i <= rows; i++) {
-        for (int j = 1; j <= i; j++) {
-            cout << num % 2;
-            num++;
-        }
-        cout << endl;
+void findRepeatingElements(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[abs(arr[i])] > 0)
+            arr[abs(arr[i])] = -arr[abs(arr[i])];
+        else
+            cout << abs(arr[i]) << " ";
     }
+}
+
+int main()
+{
+    int arr[] = {4, 2, 4, 5, 2, 3, 1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    findRepeatingElements(arr, n);
 
     return 0;
 }
