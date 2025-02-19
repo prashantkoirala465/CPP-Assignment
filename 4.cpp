@@ -1,29 +1,30 @@
-// Write a C++ program to make such a pattern like a pyramid with an asterisk.
-// Sample Output:
-// Input number of rows: 5
-//      *
-//     * *
-//    * * *
-//   * * * *
-//  * * * * *
+// Write a C++ program to find the smallest element missing from a sorted array.
 
 #include <iostream>
 using namespace std;
 
-int main() {
-    int rows;
-    cout << "Input number of rows: ";
-    cin >> rows;
-
-    for (int i = 1; i <= rows; i++) {
-        for (int j = 1; j <= rows - i; j++) {
-            cout << " ";
+int findSmallestMissingElement(int arr[], int n)
+{
+    int low = 0, high = n - 1;
+    while (low <= high)
+    {
+        int mid = low + (high - low) / 2;
+        if (arr[mid] != mid)
+        {
+            if (mid == 0 || arr[mid - 1] == mid - 1)
+                return mid;
+            high = mid - 1;
         }
-        for (int k = 1; k <= (2 * i - 1); k++) {
-            cout << "*";
-        }
-        cout << endl;
+        else
+            low = mid + 1;
     }
+    return -1;
+}
 
+int main()
+{
+    int arr[] = {0, 1, 2, 6, 9, 11, 15};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << "The smallest missing element is " << findSmallestMissingElement(arr, n);
     return 0;
 }

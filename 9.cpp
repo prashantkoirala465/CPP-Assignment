@@ -1,29 +1,39 @@
-// Write a C++ program that displays the pattern with the highest columns in the first
-// row and digits with the right justified digits.
-// Sample Output:
-// Input number of rows: 5
-// 12345
-// 1234
-// 123
-// 12
-// 1
+// Write a C++ program to find the third largest string in a given array of strings.
 
 #include <iostream>
+#include <string>
 using namespace std;
 
-int main() {
-    int rows;
-    cout << "Input number of rows: ";
-    cin >> rows;
+void findThirdLargestString(string arr[], int n)
+{
+    string firstLargest = "", secondLargest = "", thirdLargest = "";
 
-    for (int i = 0; i < rows; i++) {
-        for (int space = 0; space < i; space++) {
-            cout << " ";
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i].length() > firstLargest.length())
+        {
+            thirdLargest = secondLargest;
+            secondLargest = firstLargest;
+            firstLargest = arr[i];
         }
-        for (int j = 1; j <= (rows - i); j++) {
-            cout << j;
+        else if (arr[i].length() > secondLargest.length())
+        {
+            thirdLargest = secondLargest;
+            secondLargest = arr[i];
         }
-        cout << endl;
+        else if (arr[i].length() > thirdLargest.length())
+            thirdLargest = arr[i];
     }
+
+    cout << "The third largest string is " << thirdLargest;
+}
+
+int main()
+{
+    string arr[] = {"apple", "banana", "mango", "kiwi", "grapes"};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    findThirdLargestString(arr, n);
+
     return 0;
 }
