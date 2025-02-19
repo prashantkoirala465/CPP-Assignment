@@ -1,30 +1,42 @@
-// Write a C++ program to find the smallest element missing from a sorted array.
-
+// Write a C++ program to create a class called Triangle that has private member variables for the lengths of its three sides. Implement member functions to determine if the triangle is equilateral, isosceles, or scalene.
 #include <iostream>
 using namespace std;
 
-int findSmallestMissingElement(int arr[], int n)
-{
-    int low = 0, high = n - 1;
-    while (low <= high)
-    {
-        int mid = low + (high - low) / 2;
-        if (arr[mid] != mid)
-        {
-            if (mid == 0 || arr[mid - 1] == mid - 1)
-                return mid;
-            high = mid - 1;
-        }
-        else
-            low = mid + 1;
-    }
-    return -1;
-}
+class Triangle {
+private:
+    double side1, side2, side3;
 
-int main()
-{
-    int arr[] = {0, 1, 2, 6, 9, 11, 15};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    cout << "The smallest missing element is " << findSmallestMissingElement(arr, n);
+public:
+    Triangle(double s1, double s2, double s3)
+        : side1(s1), side2(s2), side3(s3) {}
+
+    bool isValid() {
+        if (side1 + side2 > side3 &&
+            side2 + side3 > side1 &&
+            side3 + side1 > side2) {
+            return true;
+        }
+        return false;
+    }
+
+    bool isEquilateral() {
+        return (side1 == side2 && side2 == side3 && isValid());
+    }
+
+    bool isIsosceles() {
+        return ( (side1 == side2 || side2 == side3 || side3 == side1) && isValid() && !isEquilateral());
+    }
+
+    bool isScalene() {
+        return (side1 != side2 && side2 != side3 && side3 != side1 && isValid());
+    }
+};
+
+int main() {
+    Triangle t1(3, 3, 3);
+    cout << "Is Equilateral? " << boolalpha << t1.isEquilateral() << endl;
+    cout << "Is Isosceles? "   << boolalpha << t1.isIsosceles()   << endl;
+    cout << "Is Scalene? "    << boolalpha << t1.isScalene()     << endl;
+
     return 0;
 }

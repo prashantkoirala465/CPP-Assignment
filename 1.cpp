@@ -1,47 +1,39 @@
-// Write a C++ program to find the largest three elements in an array.
-
+// Write a C++ program to implement a class called Employee that has private member variables for name, employee ID, and salary. Include member functions to calculate and set salary based on employee performance.
 #include <iostream>
-#include <climits>
+#include <string>
 using namespace std;
 
-void findLargestThree(int arr[], int size) {
-    if (size < 3) {
-        cout << "Array should have at least 3 elements." << endl;
-        return;
-    }
-    int first = INT_MIN, second = INT_MIN, third = INT_MIN;
+class Employee {
+private:
+    string name;
+    int employeeID;
+    double salary;
 
-    for (int i = 0; i < size; i++) {
-        if (arr[i] > first) {
-            third = second;
-            second = first;
-            first = arr[i];
-        } else if (arr[i] > second) {
-            third = second;
-            second = arr[i];
-        } else if (arr[i] > third) {
-            third = arr[i];
+public:
+    Employee(string n, int id, double sal)
+        : name(n), employeeID(id), salary(sal) {}
+
+    void setPerformance(int rating) {
+        if(rating >= 9) {
+            salary *= 1.30;
+        } else if(rating >= 6) {
+            salary *= 1.10;
+        } else {
+            salary *= 1.02;
         }
     }
 
-    cout << "The largest three elements are: ";
-    cout << first << " " << second << " " << third << endl;
-}
+    void display() {
+        cout << "Name: " << name << endl;
+        cout << "Employee ID: " << employeeID << endl;
+        cout << "Salary: " << salary << endl;
+    }
+};
 
 int main() {
-    int size;
-
-    cout << "Enter the size of the array: ";
-    cin >> size;
-
-    int arr[size];
-
-    cout << "Enter the elements of the array: ";
-    for (int i = 0; i < size; i++) {
-        cin >> arr[i];
-    }
-
-    findLargestThree(arr, size);
+    Employee emp("John Doe", 1234, 50000);
+    emp.setPerformance(8);
+    emp.display();
 
     return 0;
 }

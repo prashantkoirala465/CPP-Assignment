@@ -1,45 +1,57 @@
-// Write a C++ program to find the second largest element in an array of integers.
-
+// Write a C++ program to implement a class called Date that has private member variables for day, month, and year. Include member functions to set and get these variables, as well as to validate if the date is valid.
 #include <iostream>
-#include <climits>
 using namespace std;
 
-int findSecondLargest(int arr[], int size) {
-    if (size < 2) {
-        cout << "Array should have at least 2 elements." << endl;
-        return INT_MIN;
-    }
-    int first = INT_MIN, second = INT_MIN;
+class Date {
+private:
+    int day, month, year;
 
-    for (int i = 0; i < size; i++) {
-        if (arr[i] > first) {
-            second = first;
-            first = arr[i];
-        } else if (arr[i] > second && arr[i] != first) {
-            second = arr[i];
+    bool isValidDate(int d, int m, int y) {
+        if (y < 1 || m < 1 || m > 12 || d < 1) return false;
+        int daysInMonth;
+        switch(m) {
+            case 2:
+                daysInMonth = ( (y % 400 == 0) || (y % 4 == 0 && y % 100 != 0) ) ? 29 : 28;
+                break;
+            case 4: case 6: case 9: case 11:
+                daysInMonth = 30;
+                break;
+            default:
+                daysInMonth = 31;
+                break;
+        }
+        if (d > daysInMonth) return false;
+        return true;
+    }
+
+public:
+    void setDate(int d, int m, int y) {
+        if (isValidDate(d, m, y)) {
+            day = d;
+            month = m;
+            year = y;
+        } else {
+            cout << "Invalid Date" << endl;
         }
     }
 
-    return second;
-}
+    int getDay() { return day; }
+    int getMonth() { return month; }
+    int getYear() { return year; }
+
+    bool validate() {
+        return isValidDate(day, month, year);
+    }
+};
 
 int main() {
-    int size;
-
-    cout << "Enter the size of the array: ";
-    cin >> size;
-
-    int arr[size];
-
-    cout << "Enter the elements of the array: ";
-    for (int i = 0; i < size; i++) {
-        cin >> arr[i];
-    }
-
-    int secondLargest = findSecondLargest(arr, size);
-
-    if (secondLargest != INT_MIN) {
-        cout << "The second largest element is: " << secondLargest << endl;
+    Date dt;
+    dt.setDate(29, 2, 2020);
+    if(dt.validate()) {
+        cout << "Valid date: "
+             << dt.getDay() << "/" << dt.getMonth() << "/" << dt.getYear() << endl;
+    } else {
+        cout << "Invalid date" << endl;
     }
 
     return 0;
