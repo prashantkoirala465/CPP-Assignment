@@ -1,18 +1,27 @@
+// Write a C++ program to print Floyd's Triangle.
+// Sample Output:
+// Input number of rows: 5
+// 1
+// 01
+// 101
+// 0101
+// 10101
+
 #include <iostream>
-#include <cmath>
 using namespace std;
 
-int main(){
-    int a, b, sum = 0, digits = 0;
-    cout << "Enter two numbers: ";
-    cin >> a >> b;
-    sum = a + b;
-    int temp = sum;
-    while(temp != 0){
-        temp /= 10;
-        digits++;
+int main() {
+    int rows, num = 1;
+    cout << "Input number of rows: ";
+    cin >> rows;
+
+    for (int i = 1; i <= rows; i++) {
+        for (int j = 1; j <= i; j++) {
+            cout << num % 2;
+            num++;
+        }
+        cout << endl;
     }
-    cout << "The sum of the two numbers is: " << sum << endl;
-    cout << "The number of digits in the sum is: " << digits << endl;
+
     return 0;
 }

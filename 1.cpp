@@ -1,12 +1,24 @@
+// Write a program in C++ to display a pattern like a right angle triangle using an asterisk.
+// Sample Output:
+// Input number of rows: 5
+// *
+// **
+// ***
+// ****
+// *****
+
 #include <iostream>
 using namespace std;
 
-int main() {
-    string firstName, lastName;
-    cout << "Enter your first name and last name : ";
-    cin >> firstName >> lastName;
-    cout << "First Name : " << firstName << endl;
-    cout << "Last Name : " << lastName << endl;
-    cout << "Name in reverse is: " << lastName << " " << firstName << endl;
+int main(){
+    int n;
+    cout << "Input number of rows: ";
+    cin >> n;
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= i; j++){
+            cout << "*";
+        }
+        cout << endl;
+    }
     return 0;
 }
