@@ -1,25 +1,30 @@
-// Write a C++ program to make such a pattern like a right angle triangle with the number increased by 1.
-// Sample Output:
-// Input number of rows: 4
-// 1
-// 2 3
-// 4 5 6
-// 7 8 9 10
-
+// Write a C++ program that takes a vector of strings and returns only those strings that contain a number(s).
 #include <iostream>
+#include <vector>
 using namespace std;
 
-int main(){
-    int n;
-    cout << "Input number of rows: ";
-    cin >> n;
-    int counter = 1;
-    for(int i = 1; i <= n; i++){
-        for(int j = 1; j <= i; j++){
-            cout << counter << " ";
-            counter++;
-        }
-        cout << endl;
+bool containsDigit(const string &s) {
+    for (char c : s) {
+        if (isdigit(c)) return true;
     }
+    return false;
+}
+
+int main() {
+    vector<string> vec = {"red", "green23", "1black", "white"};
+    vector<string> result;
+
+    for (auto &str : vec) {
+        if (containsDigit(str)) {
+            result.push_back(str);
+        }
+    }
+
+    cout << "Strings that contain a number(s):" << endl;
+    for (auto &r : result) {
+        cout << r << " ";
+    }
+    cout << endl;
+
     return 0;
 }

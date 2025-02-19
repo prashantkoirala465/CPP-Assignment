@@ -1,24 +1,23 @@
-// Write a program in C++ to display the pattern like right angle triangle with number.
-// Sample Output:
-// Input number of rows: 5
-// 1
-// 12
-// 123
-// 1234
-// 12345
-
+// Write a C++ program to capitalize the first character of each element of a given string vector.
 #include <iostream>
+#include <vector>
+#include <cctype>
 using namespace std;
 
-int main(){
-    int n;
-    cout << "Input number of rows: ";
-    cin >> n;
-    for(int i = 1; i <= n; i++){
-        for(int j = 1; j <= i; j++){
-            cout << j;
+int main() {
+    vector<string> colors = {"red", "green", "black", "white", "Pink"};
+
+    for (auto &word : colors) {
+        if (!word.empty()) {
+            word[0] = toupper(word[0]);
         }
-        cout << endl;
     }
+
+    cout << "Capitalized Vector:" << endl;
+    for (auto &w : colors) {
+        cout << w << " ";
+    }
+    cout << endl;
+
     return 0;
 }
